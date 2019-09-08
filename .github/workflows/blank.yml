@@ -18,4 +18,5 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: build the image
       uses: actions/docker/cli@master
-      args: build -t drighart/workbench-python-base .
+      with:
+        args: build -t drighart/workbench-python-base .
