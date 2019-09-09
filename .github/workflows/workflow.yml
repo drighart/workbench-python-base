@@ -1,17 +1,18 @@
-workflow "Build and Publish" {
-  on = "push"
-  resolves = "Publish"
-}
+  
+name: Python package
 
-action "Docker Login" {
-  needs = ["Publish Filter"]
-  uses = "actions/docker/login@master"
-  secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
-}
+on: [push]
 
-action "Publish" {
-  needs = ["Docker Login"]
-  uses = "actions/action-builder/docker@master"
-  runs = "make"
-  args = "publish"
-}
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.7]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag workbench-python-base:$(date +%s)
