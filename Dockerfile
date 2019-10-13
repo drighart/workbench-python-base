@@ -1,5 +1,4 @@
-ARG NODE_VERSION=10
-FROM node:${NODE_VERSION}-stretch
+FROM node:10.16.3-buster-slim
 
 USER root
 WORKDIR /root
