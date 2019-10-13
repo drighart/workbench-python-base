@@ -1,5 +1,5 @@
   
-name: Python package
+name: Building Base Image Visual Code Studio
 
 on: [push]
 
@@ -15,10 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag workbench-python-base:$(date +%s)
+      run: docker build . --file Dockerfile --tag workbench-python-java-base:$(date +%s)
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: drighart/workbench-python-base
+        name: drighart/workbench-python-java-base
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
