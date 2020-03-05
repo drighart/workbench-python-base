@@ -1,4 +1,4 @@
-FROM node:10.16.3-buster-slim
+FROM node:10.19.0-buster-slim
 
 USER root
 WORKDIR /root
